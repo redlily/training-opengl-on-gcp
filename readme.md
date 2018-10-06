@@ -22,8 +22,18 @@ GPU搭載のLinuxサーバ上で3Dレンダリングを実現するための最�
 描画用の頂点シェーダとフラグメントシェーダ (ピクセルシェーダ)。
 - image  
 レンダリングされた画像を保存するためのディレクトリ、apache, nginx等でレンダリングサーバを作る場合は `chmod 0777` 等で権限を与えておいてください。
+- ExportMesh.cc  
+3Dモデルデータを出力するためのUnity用のソースファイル
 - index.php  
 レンダリングプログラムをWeb APIとして動作させるためのPHP用のサンプルプログラム。
+
+## 3Dモデル・データ
+
+ローポリ ユニティちゃん
+
+http://unity-chan.com/download/releaseNote.php?id=LowPolyUnityChan
+
+これをExportMesh.ccを使用してmodel.hを生成しています。
 
 ## インストール・パッケージ
 
@@ -135,3 +145,11 @@ $ ./main ${x軸の回転角} ${y軸の回転角} ${z軸の回転角}
 https://devblogs.nvidia.com/egl-eye-opengl-visualization-without-x-server/
 
 X Serverを使用しないEGLによるOpenGLの初期化と、その他にここで触れていないGPUクラスタでのEGLの初期化例が書かれています。
+
+## ライセンス
+
+MIT
+
+### 3Dモデルデータ、及びテクスチャデータ
+
+http://unity-chan.com/contents/guideline/
