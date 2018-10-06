@@ -1,4 +1,4 @@
-# Server 3D renderer with EGL and OpenGL.
+# Server 3D rendering with EGL and OpenGL.
 
 <img src='image/rendering-10-40--10.png' />
 
@@ -44,10 +44,12 @@ PNGの読み書き用のライブラリ。
 
 #### 環境
 
+GCPインスタンス
+
 - CPU vCPU x 1
 - メモリ 3.75GB
 - GPU NVIDIA tesla K80 x 1
-- OS Ubuntu 16.04 Minimal
+- OS Ubuntu 16.04 Minimal or CentOS 7
 
 #### インストール
 
@@ -58,11 +60,14 @@ $ wget http://us.download.nvidia.com/tesla/396.44/nvidia-diag-driver-local-repo-
 $ dpkg -i nvidia-diag-driver-local-repo-ubuntu1604-396.44_1.0-1_amd64.deb
 $ apt-key add /var/nvidia-diag-driver-local-repo-396.44/7fa2af80.pub
 $ apt-get update
-$ rm nvidia-diag-driver-local-repo-ubuntu1604-396.44_1.0-1_amd64.deb
 
-# GPUドライバインストール
+# GPUドライバーインストール
 
 $ apt-get install cuda-drivers
+
+# 再起動
+
+$ reboot
 
 # 各種必要なパッケージのインストール
 
@@ -73,6 +78,39 @@ $ apt-get install apache2
 ```
 
 ### CentOS 7
+
+```bash
+# NVIDIAのGPUドライバ用のリポジトリ追加
+
+$ curl -O http://us.download.nvidia.com/tesla/384.145/nvidia-diag-driver-local-repo-rhel7-384.145-1.0-1.x86_64.rpm
+$ rpm -i nvidia-diag-driver-local-repo-rhel7-384.145-1.0-1.x86_64.rpm
+$ yum clean all
+$ yum install epel-release -y
+$ yum update -y
+
+# GPUドライバーインストール
+
+$ yum install cuda-drivers
+
+# 再起動
+
+$ reboot
+
+# 各種必要なパッケージのインストール
+
+$ yum install gcc-c++
+$ yum install libpng-devel
+$ yum install mesa-libGLES-devel mesa-libEGL-devel
+$ yum install httpd
+
+# PNG++のインストール
+
+$ curl -L -O http://download.savannah.nongnu.org/releases/pngpp/png++-0.2.9.tar.gz
+$ tar -zxf png++-0.2.9.tar.gz
+$ cd png++-0.2.9
+$ make
+$ make install
+```
 
 追加予定
 
@@ -97,7 +135,3 @@ $ ./main ${x軸の回転角} ${y軸の回転角} ${z軸の回転角}
 https://devblogs.nvidia.com/egl-eye-opengl-visualization-without-x-server/
 
 X Serverを使用しないEGLによるOpenGLの初期化と、その他にここで触れていないGPUクラスタでのEGLの初期化例が書かれています。
-
-## その他
-
-これは実験用のリポジトリなので不要になったら消す。
